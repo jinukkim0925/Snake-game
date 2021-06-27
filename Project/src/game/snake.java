@@ -36,14 +36,14 @@ public class snake extends JFrame implements Runnable {
 	JLabel jl;
 	Thread th = new Thread(this);
 	LinkedList<Point> snake = new LinkedList<Point>();
-	LinkedList<Integer> wheresnake = new LinkedList<Integer>();	
+	LinkedList<Integer> wheresnake = new LinkedList<Integer>();
 	LinkedList<Integer> goldPoint = new LinkedList<Integer>();
 	LinkedList<Integer> goldPoint2 = new LinkedList<Integer>();
 	LinkedList<Integer> goldPoint3 = new LinkedList<Integer>();
 	LinkedList<Integer> goldPoint4 = new LinkedList<Integer>();
 	LinkedList<Integer> goldPoint5 = new LinkedList<Integer>();
 	int ti1 = 0, ti2 = 0;
-	
+
 	public static int where = 1, drawsnakex = 0, drawsnakey = 0, draw = 25, sub = 0, speed = 10, bestscore = 0;
 	public static boolean run = true, turn = false, item = false, rainbow = false, gold = false;
 	public static Point itemPoint = new Point();
@@ -55,8 +55,8 @@ public class snake extends JFrame implements Runnable {
 			new Color(0, 0, 128), new Color(204, 153, 255), new Color(102, 0, 204), new Color(150, 75, 0),
 			new Color(128, 128, 128), new Color(0, 0, 0), new Color(255, 215, 0), new Color(0, 0, 0) };
 	JLabel chooseColor[] = new JLabel[18];
-	int n1 = 1 , n2 = 1, n3 = 1, n4 = 1;
-	
+	int n1 = 1, n2 = 1, n3 = 1, n4 = 1;
+
 	// 0 == up, 1 == right, 2 == bottom, 3 == left;
 	public snake() {
 		// TODO Auto-generated constructor stub
@@ -105,7 +105,7 @@ public class snake extends JFrame implements Runnable {
 				g2.drawString("점수 : " + (snake.size() - 4) + "점", 10, 200);
 				g2.drawString("시간 : " + ss.format(emilli - smilli), 10, 300);
 				chooseColor[17].setBackground(snakecolor.rainbow);
-				chooseColor[16].setBackground(snakecolor.gold);				
+				chooseColor[16].setBackground(snakecolor.gold);
 			}
 		});
 
@@ -178,7 +178,7 @@ public class snake extends JFrame implements Runnable {
 				super.paintComponent(g);
 				if (run) {
 					Random r = new Random();
-					
+
 					for (int i = 0; i < snake.size(); i++) {
 						// System.out.println(wheresnake.get(i));
 						if (rainbow) {
@@ -214,7 +214,7 @@ public class snake extends JFrame implements Runnable {
 						}
 
 						g.fillRect(snake.get(i).x * 25 - drawsnakex, snake.get(i).y * 25 - drawsnakey, 25, 25);
-						
+
 						if (gold) {
 							if (draw == 25 && ti1 != ti2) {
 								ti2 = ti1;
@@ -227,27 +227,31 @@ public class snake extends JFrame implements Runnable {
 								goldPoint3.clear();
 								goldPoint4.clear();
 								goldPoint5.clear();
-								for (int j = 0; j < snake.size()-3; j++) {
+								for (int j = 0; j < snake.size() - 3; j++) {
 									goldPoint.add(r.nextInt(snake.size()));
-									goldPoint2.add(r.nextInt(2));									
-									goldPoint3.add(r.nextInt(2));									
-									goldPoint4.add(r.nextInt(2));									
-									goldPoint5.add(r.nextInt(2));									
+									goldPoint2.add(r.nextInt(2));
+									goldPoint3.add(r.nextInt(2));
+									goldPoint4.add(r.nextInt(2));
+									goldPoint5.add(r.nextInt(2));
 								}
 							}
 							g.setColor(snakecolor.gold);
 							for (int j = 0; j < goldPoint.size(); j++) {
 								if (goldPoint2.get(j) == 0 && (wheresnake.get(i) == 1 || wheresnake.get(i) == 3)) {
-									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex, snake.get(goldPoint.get(j)).y * 25 - drawsnakey + 30, 7, 7);
+									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex,
+											snake.get(goldPoint.get(j)).y * 25 - drawsnakey + 30, 7, 7);
 								}
 								if (goldPoint3.get(j) == 0 && (wheresnake.get(i) == 1 || wheresnake.get(i) == 3)) {
-									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex, snake.get(goldPoint.get(j)).y * 25 - drawsnakey - 10, 7, 7);
+									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex,
+											snake.get(goldPoint.get(j)).y * 25 - drawsnakey - 10, 7, 7);
 								}
 								if (goldPoint4.get(j) == 0 && (wheresnake.get(i) == 0 || wheresnake.get(i) == 2)) {
-									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex + 30, snake.get(goldPoint.get(j)).y * 25 - drawsnakey, 7, 7);
+									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex + 30,
+											snake.get(goldPoint.get(j)).y * 25 - drawsnakey, 7, 7);
 								}
 								if (goldPoint5.get(j) == 0 && (wheresnake.get(i) == 0 || wheresnake.get(i) == 2)) {
-									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex - 10, snake.get(goldPoint.get(j)).y * 25 - drawsnakey, 7, 7);
+									g.fillRect(snake.get(goldPoint.get(j)).x * 25 - drawsnakex - 10,
+											snake.get(goldPoint.get(j)).y * 25 - drawsnakey, 7, 7);
 								}
 							}
 						}
@@ -487,11 +491,25 @@ public class snake extends JFrame implements Runnable {
 
 	public void gameOver() {
 		run = false;
-		JOptionPane.showMessageDialog(null, "앗!");
+//		JOptionPane.showMessageDialog(null, "앗!");
+
 		if (bestscore <= snake.size() - 4) {
 			bestscore = snake.size() - 4;
 		}
+		tm.stop();
 
+		if (bestscore >= 5) {
+			String st[] = { "입력", "취소" };
+			int m = JOptionPane.showOptionDialog(null, "기록을 입력 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, st, "확인");
+			if (m == JOptionPane.YES_OPTION) {
+				String s = JOptionPane.showInputDialog(this,
+						"점수 : " + bestscore + " \n걸린시간 : " + ss.format(emilli - smilli) + " \n이름을 입력해 주세요. :");
+				dispose();
+				return;
+			}
+
+		}
 		snake.clear();
 		wheresnake.clear();
 
@@ -503,6 +521,7 @@ public class snake extends JFrame implements Runnable {
 		}
 		th = new Thread(this);
 		th.start();
+
 	}
 
 	public void reset() {
